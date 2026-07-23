@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Créer une critique
+{% endblock %}
+
+{% block content %}
+
+<h2>Créer une critique</h2>
+<hr>
+<h3>{{ ticket.title }}</h3>
+<p>
+    {{ ticket.description }}
+</p>
+{% if ticket.image %}
+    <img src="{{ ticket.image.url }}" width="200">
+{% endif %}
+<hr>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">
+        Publier la critique
+    </button>
+</form>
+
+{% endblock %}

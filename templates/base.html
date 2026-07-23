@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}LITRevu{% endblock %}</title>
+</head>
+
+<body>
+
+<header>
+    <h1>LITRevu</h1>
+
+    {% if user.is_authenticated %}
+        <nav>
+            <a href="{% url 'feed' %}">Flux</a> |
+            <a href="{% url 'create_ticket' %}">Créer un ticket</a> |
+            <a href="#">Posts</a> |
+            <a href="#">Abonnements</a> |
+            <a href="{% url 'logout' %}">Se déconnecter</a>
+        </nav>
+    {% endif %}
+
+    <hr>
+</header>
+
+<main>
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+</body>
+
+</html>

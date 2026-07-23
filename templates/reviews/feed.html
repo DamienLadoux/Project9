@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}
+Flux
+{% endblock %}
+
+{% block content %}
+
+<h2>Flux</h2>
+
+<p>
+    <a href="{% url 'create_ticket' %}">
+        Créer un ticket
+    </a>
+</p>
+
+{% for ticket in tickets %}
+
+<hr>
+
+<h3>{{ ticket.title }}</h3>
+
+<p>
+    {{ ticket.description }}
+</p>
+
+<p>
+    Auteur : {{ ticket.user.username }}
+</p>
+
+<p>
+    Créé le : {{ ticket.time_created }}
+</p>
+<p>
+    <a href="{% url 'create_review' ticket.id %}">
+        Ajouter une critique
+    </a>
+</p>
+
+{% empty %}
+
+<p>Aucun ticket pour le moment.</p>
+
+{% endfor %}
+
+<hr>
+
+<h2>Critiques</h2>
+
+{% for review in reviews %}
+
+<hr>
+
+<h3>{{ review.headline }}</h3>
+
+<p>
+    Note :
+    {{ review.rating }}/5
+</p>
+
+<p>
+    {{ review.body }}
+</p>
+
+<p>
+    Ticket :
+    {{ review.ticket.title }}
+</p>
+
+<p>
+    Auteur :
+    {{ review.user.username }}
+</p>
+
+<p>
+    Créé le :
+    {{ review.time_created }}
+</p>
+
+{% empty %}
+
+<p>Aucune critique.</p>
+
+{% endfor %}
+
+{% endblock %}
